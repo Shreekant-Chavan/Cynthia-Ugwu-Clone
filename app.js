@@ -32,11 +32,42 @@ function firstPageAnimation() {
 }
 
 
-function circleMouseFollower() {
+var timeout;
+
+function circleMouseSkew() {
+
+    var xscale = 1;
+    var yscale = 1;
+
+    var prevx = 0;
+    var prevy = 0;
+
+
     window.addEventListener('mousemove', function(dets) {
-        document.querySelector('#mini-circle').style.transform = `translate(${dets.clientX}px, ${dets.clientY}px)`
+        clearTimeout(timeout);
+        
+        xscale = gsap.utils.clamp(0.8, 1.2, dets.clientX - prevx);
+        yscale = gsap.utils.clamp(0.8, 1.2, dets.clientY - prevy);
+        
+        prevx = dets.clientX;
+        prevy = dets.clientY;
+
+        circleMouseFollower(xscale,yscale);
+
+        timeout = setTimeout(function(){
+            document.querySelector('#mini-circle').style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(1,1)`;
+        }, 100);
     })
 }
 
+
+function circleMouseFollower(xscale, yscale) {
+    window.addEventListener('mousemove', function(dets) {
+        document.querySelector('#mini-circle').style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(${xscale}, ${yscale})`
+    })
+}
+
+
+circleMouseSkew();
 circleMouseFollower();
 firstPageAnimation();
