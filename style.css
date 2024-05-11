@@ -11,6 +11,29 @@ html,body {
     overflow: visible;
 }
 
+
+#mini-circle {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    z-index: 99999;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+}
+
+
+.bounding {
+    width: fit-content;
+    overflow: hidden;
+}
+
+
+.bounding .boundingelem {
+    transform: translateY(300%);
+}
+
+
 #main {
     width: 100%;
     background-color: #000;
@@ -67,6 +90,9 @@ html,body {
 
 .blocktext {
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     /* background-color: red; */
 }
 
@@ -78,6 +104,9 @@ html,body {
 }
 
 #heading2 {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     padding-right: 25px;
     margin-top: 70px;
 }
