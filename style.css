@@ -187,7 +187,7 @@ html,body {
     z-index: 999;
     height: 140%;
     width: 30%;
-    display: none;
+    opacity: 0;
 }
 
 

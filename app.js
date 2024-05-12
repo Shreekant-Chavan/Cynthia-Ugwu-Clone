@@ -70,4 +70,14 @@ function circleMouseFollower(xscale, yscale) {
 
 circleMouseSkew();
 circleMouseFollower();
-firstPageAnimation();
+//firstPageAnimation();
+
+
+document.querySelectorAll(".elem").forEach(function (elem) {
+    elem.addEventListener("mousemove", function(dets){
+        gsap.to(elem.querySelector("img"), {
+            opacity: 1,
+            ease: Power1.inOut,
+        });
+    });
+});
