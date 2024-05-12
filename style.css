@@ -185,8 +185,8 @@ html,body {
 .elem img {
     position: absolute;
     z-index: 999;
-    height: 140%;
-    width: 30%;
+    height: 170%;
+    width: 35%;
     opacity: 0;
 }
 
@@ -231,6 +231,12 @@ html,body {
     font-size: 15px;
 }
 
+#about a:hover {
+    background-color: #fff;
+    color: #000;
+    transition: ease-in-out 0.8s -0.1s;
+}
+
 #subscribe {
     padding: 20px 30px;
     padding-bottom: 7vw;
@@ -270,4 +276,29 @@ html,body {
 #footer-right a {
     font-size: 14px;
     font-weight: 700;
+}
+
+
+#footer-right a:hover {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+}
+
+#footer-right a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scale(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+#footer-right a:hover::after {
+    transform: scale(1);
+    transform-origin: bottom left;
 }

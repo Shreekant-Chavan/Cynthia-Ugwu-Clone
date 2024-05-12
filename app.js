@@ -70,14 +70,50 @@ function circleMouseFollower(xscale, yscale) {
 
 circleMouseSkew();
 circleMouseFollower();
-//firstPageAnimation();
+firstPageAnimation();
+
+
+
+
 
 
 document.querySelectorAll(".elem").forEach(function (elem) {
+    var rotate = 0;
+    var diffrotate = 0;
     elem.addEventListener("mousemove", function(dets){
+        var diff = dets.clientY - elem.getBoundingClientRect().top;
+        diffrotate = dets.clientX - rotate;
+        rotate = dets.clientX;
+
+        
         gsap.to(elem.querySelector("img"), {
             opacity: 1,
-            ease: Power1.inOut,
+            ease: Power3,
+            top: diff,
+            left: dets.clientX,
+            rotate: gsap.utils.clamp(-20, 20, diffrotate*0.5),
         });
+
+        elem.addEventListener("mouseleave", function(dets){
+            gsap.to(elem.querySelector("img"), {
+                opacity: 0,
+                ease: Power3,
+                duration: 1,
+            });
+        });
+        
     });
 });
+
+function updateCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours() % 12 || 12;
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? "PM" : "AM";
+    const timeString = `${hours}:${minutes} ${ampm} GMT`;
+    document.getElementById('current-time').textContent  = timeString;
+}
+
+setInterval(updateCurrentTime, 1000);
+
+updateCurrentTime();
